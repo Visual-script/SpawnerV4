@@ -1,4 +1,4 @@
--- Speed X Hub Loading Screen with Warning Tab
+-- Speed X Hub Loading Screen with Multiple Warnings
 local player = game.Players.LocalPlayer
 local PlayerGui = player:WaitForChild("PlayerGui")
 
@@ -7,43 +7,58 @@ local screenGui = Instance.new("ScreenGui")
 screenGui.Parent = PlayerGui
 
 -- ==============================
--- TAB 1: WARNING SCREEN (5 SECONDS)
+-- TAB 1: WARNING DELTA (5 SECONDS)
 -- ==============================
-local warningFrame = Instance.new("Frame")
-warningFrame.Size = UDim2.new(1, 0, 1, 0)
-warningFrame.BackgroundColor3 = Color3.fromRGB(0, 0, 0) -- full black background
-warningFrame.BorderSizePixel = 0
-warningFrame.Parent = screenGui
+local redBox1 = Instance.new("Frame")
+redBox1.Size = UDim2.new(0.6, 0, 0.3, 0)
+redBox1.Position = UDim2.new(0.2, 0, 0.35, 0)
+redBox1.BackgroundColor3 = Color3.fromRGB(200, 0, 0)
+redBox1.BorderSizePixel = 4
+redBox1.BorderColor3 = Color3.fromRGB(255, 255, 255)
+redBox1.Parent = screenGui
 
--- Red Box in the center
-local redBox = Instance.new("Frame")
-redBox.Size = UDim2.new(0.6, 0, 0.3, 0)
-redBox.Position = UDim2.new(0.2, 0, 0.35, 0)
-redBox.BackgroundColor3 = Color3.fromRGB(200, 0, 0)
-redBox.BorderSizePixel = 4
-redBox.BorderColor3 = Color3.fromRGB(255, 255, 255)
-redBox.Parent = warningFrame
+local warningText1 = Instance.new("TextLabel")
+warningText1.Size = UDim2.new(1, -20, 1, -20)
+warningText1.Position = UDim2.new(0, 10, 0, 10)
+warningText1.BackgroundTransparency = 1
+warningText1.Text = "⚠️ WARNING ⚠️\nDon't use Delta — causing a Ban to your account!"
+warningText1.TextColor3 = Color3.fromRGB(255, 255, 255)
+warningText1.Font = Enum.Font.GothamBold
+warningText1.TextSize = 28
+warningText1.TextWrapped = true
+warningText1.Parent = redBox1
 
--- Warning Text inside Red Box
-local warningText = Instance.new("TextLabel")
-warningText.Size = UDim2.new(1, -20, 1, -20)
-warningText.Position = UDim2.new(0, 10, 0, 10)
-warningText.BackgroundTransparency = 1
-warningText.Text = "⚠️ WARNING ⚠️\nDon't use Delta — causing a Ban to your account!"
-warningText.TextColor3 = Color3.fromRGB(255, 255, 255)
-warningText.Font = Enum.Font.GothamBold
-warningText.TextSize = 28
-warningText.TextWrapped = true
-warningText.Parent = redBox
-
--- Hold this screen for 5 seconds
 task.wait(5)
-warningFrame:Destroy()
+redBox1:Destroy()
 
 -- ==============================
--- TAB 2: LOADING SCREEN
+-- TAB 2: WARNING STEALER SCRIPT (5 SECONDS)
 -- ==============================
--- Background Frame (Main Box - Glass Black)
+local redBox2 = Instance.new("Frame")
+redBox2.Size = UDim2.new(0.6, 0, 0.3, 0)
+redBox2.Position = UDim2.new(0.2, 0, 0.35, 0)
+redBox2.BackgroundColor3 = Color3.fromRGB(200, 0, 0)
+redBox2.BorderSizePixel = 4
+redBox2.BorderColor3 = Color3.fromRGB(255, 255, 255)
+redBox2.Parent = screenGui
+
+local warningText2 = Instance.new("TextLabel")
+warningText2.Size = UDim2.new(1, -20, 1, -20)
+warningText2.Position = UDim2.new(0, 10, 0, 10)
+warningText2.BackgroundTransparency = 1
+warningText2.Text = "⚠️ WARNING ⚠️\nBeware of Stealer Script!"
+warningText2.TextColor3 = Color3.fromRGB(255, 255, 255)
+warningText2.Font = Enum.Font.GothamBold
+warningText2.TextSize = 28
+warningText2.TextWrapped = true
+warningText2.Parent = redBox2
+
+task.wait(5)
+redBox2:Destroy()
+
+-- ==============================
+-- TAB 3: LOADING SCREEN
+-- ==============================
 local mainFrame = Instance.new("Frame")
 mainFrame.Size = UDim2.new(0.6, 0, 0.4, 0)
 mainFrame.Position = UDim2.new(0.2, 0, 0.3, 0)
@@ -115,7 +130,7 @@ progressBar.Parent = progressBg
 
 -- Fake Loading Progress (5 min = 300s)
 for i = 1, 100 do
-	task.wait(3) -- 100 * 3 sec = 300 sec
+	task.wait(3)
 	loadingText.Text = "Loading... " .. i .. "%"
 	progressBar.Size = UDim2.new(i/100, 0, 1, 0)
 end
